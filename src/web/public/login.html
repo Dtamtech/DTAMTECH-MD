@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — DTAMTECH MD</title>
+  <meta name="description" content="Authentification sécurisée au tableau de bord DTAMTECH MD">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <style>
+    body {
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--trans-base);
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .stalwart-login-card {
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      box-sizing: border-box;
+      box-shadow: var(--shadow-card);
+      transition: background-color var(--trans-base), border-color var(--trans-base);
+    }
+
+    .stalwart-brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .stalwart-logo-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stalwart-brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .stalwart-heading {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 0 0 6px 0;
+      text-align: left;
+    }
+
+    .stalwart-subheading {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 24px 0;
+      text-align: left;
+    }
+
+    .stalwart-form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .stalwart-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .stalwart-input-box {
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .stalwart-input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-input);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text-main);
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color var(--trans-fast), background-color var(--trans-fast), box-shadow var(--trans-fast);
+      font-family: inherit;
+    }
+
+    .stalwart-input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 1px var(--color-primary), 0 0 0 3px var(--color-whatsapp-glow);
+    }
+
+    .stalwart-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .stalwart-toggle-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .stalwart-toggle-btn:hover {
+      color: var(--text-main);
+    }
+
+    .stalwart-submit-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 11px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      color: #04190c;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color var(--trans-fast), transform var(--trans-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    .stalwart-submit-btn:hover {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+    }
+
+    [data-theme="light"] .stalwart-submit-btn {
+      color: #ffffff;
+    }
+
+    .stalwart-submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .stalwart-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .stalwart-error-banner {
+      background: var(--color-danger-bg);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      color: var(--color-danger);
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .theme-corner-toggle {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 10;
+    }
+
+    .theme-corner-btn {
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--trans-fast), border-color var(--trans-fast);
+      box-shadow: var(--shadow-card);
+    }
+
+    .theme-corner-btn:hover {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    [data-theme="dark"] .theme-corner-btn .icon-sun { display: none; }
+    [data-theme="dark"] .theme-corner-btn .icon-moon { display: flex; color: var(--color-primary); }
+    [data-theme="light"] .theme-corner-btn .icon-moon { display: none; }
+    [data-theme="light"] .theme-corner-btn .icon-sun { display: flex; color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <div class="theme-corner-toggle">
+    <button id="theme-toggle-btn" class="theme-corner-btn" title="Basculer le thème" aria-label="Basculer le thème">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="login-container">
+    <div class="stalwart-login-card">
+      <!-- Stalwart-style Brand Logo -->
+      <div class="stalwart-brand-header">
+        <div class="stalwart-logo-icon">
+          <!-- Geometric stacked isometric layers in WhatsApp Green -->
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L4 8L16 14L28 8L16 2Z" fill="#25D366" opacity="0.95"/>
+            <path d="M4 12L16 18L28 12L24 10L16 14L8 10L4 12Z" fill="#1ebd5a" opacity="0.85"/>
+            <path d="M4 17L16 23L28 17L24 15L16 19L8 15L4 17Z" fill="#128c7e" opacity="0.75"/>
+            <path d="M4 22L16 28L28 22L24 20L16 24L8 20L4 22Z" fill="#0b5e54" opacity="0.65"/>
+          </svg>
+        </div>
+        <span class="stalwart-brand-title">DTAMTECH MD</span>
+      </div>
+
+      <h1 class="stalwart-heading">Connexion</h1>
+      <p class="stalwart-subheading">Connectez-vous à votre tableau de bord</p>
+
+      <div id="login-error" class="stalwart-error-banner" style="display: none;"></div>
+
+      <form id="login-form">
+        <!-- Phone Number Input -->
+        <div class="stalwart-form-group">
+          <label class="stalwart-label" for="phone">Numéro de téléphone</label>
+          <div class="stalwart-input-box">
+            <input 
+              type="tel" 
+              id="phone" 
+              class="stalwart-input" 
+              placeholder="ex: +33612345678" 
+              autocomplete="username tel"
+              required 
+              autofocus
+            >
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="stalwart-form-group">
+          <label class="stalwart-label" for="password">Mot de passe</label>
+          <div class="stalwart-input-box">
+            <input 
+              type="password" 
+              id="password" 
+              class="stalwart-input" 
+              placeholder="••••••••" 
+              autocomplete="current-password"
+              required
+              style="padding-right: 40px;"
+            >
+            <button type="button" id="toggle-pw-btn" class="stalwart-toggle-btn" aria-label="Afficher ou masquer le mot de passe">
+              <svg id="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="login-btn" class="stalwart-submit-btn">
+          <span>Se connecter</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Theme initialization & toggle
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('dtam_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('dtam_theme', next);
+      });
+    }
+
+    const form = document.getElementById('login-form');
+    const phoneInput = document.getElementById('phone');
+    const pwInput = document.getElementById('password');
+    const errBox = document.getElementById('login-error');
+    const btn = document.getElementById('login-btn');
+    const togglePwBtn = document.getElementById('toggle-pw-btn');
+
+    // Password visibility toggle
+    if (togglePwBtn && pwInput) {
+      togglePwBtn.addEventListener('click', () => {
+        const isPassword = pwInput.type === 'password';
+        pwInput.type = isPassword ? 'text' : 'password';
+        togglePwBtn.innerHTML = isPassword ? `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+        ` : `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        `;
+      });
+    }
+
+    // Auto-check if already authenticated
+    fetch('/api/auth/me')
+      .then(r => r.json())
+      .then(data => {
+        if (data.authenticated) {
+          window.location.href = '/';
+        }
+      }).catch(() => {});
+
+    // Submit handler with Phone Number + Password
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.style.display = 'none';
+      btn.disabled = true;
+
+      const phoneNumber = phoneInput.value.trim();
+      const password = pwInput.value;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phoneNumber, password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = '/';
+        } else {
+          errBox.textContent = data.error || 'Identifiants invalides';
+          errBox.style.display = 'block';
+          pwInput.focus();
+        }
+      } catch (err) {
+        errBox.textContent = 'Erreur réseau de communication avec le serveur';
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

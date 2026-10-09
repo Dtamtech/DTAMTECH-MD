@@ -1,0 +1,269 @@
+/* ==========================================================================
+   DTAMTECH MD — PURE MINIMALIST DESIGN SYSTEM & TOKENS
+   Palette:
+     - Carbon Black: #1e1e1e (rgb 30, 30, 30)
+     - Dark Spruce:  #234a23 (rgb 35, 74, 35)
+     - Medium Jungle:#2da22d (rgb 45, 162, 45)
+     - Lime Green:   #32cd32 (rgb 50, 205, 50)
+     - Light Green:  #99e699 (rgb 153, 230, 153)
+     - White:        #ffffff (rgb 255, 255, 255)
+   
+   Core Directives:
+     - Pure Dark / Pure White backgrounds (No green cast/tint on base surfaces)
+     - Pure accents used purposefully (Active states, CTAs, indicators, highlights)
+     - Zero random colors scattered across regular text, borders or backgrounds
+     - Subtle, refined border radii (3px, 5px, 8px, 10px)
+     - ZERO gradients, ZERO box shadows, ZERO glassmorphism
+     - Seamless Dark / Light theme switching
+   ========================================================================== */
+
+:root {
+  /* ── 6-Color Palette Tokens ── */
+  --c-carbon-black: #1e1e1e;
+  --c-carbon-black-rgb: 30, 30, 30;
+
+  --c-dark-spruce: #234a23;
+  --c-dark-spruce-rgb: 35, 74, 35;
+
+  --c-medium-jungle: #2da22d;
+  --c-medium-jungle-rgb: 45, 162, 45;
+
+  --c-lime-green: #32cd32;
+  --c-lime-green-rgb: 50, 205, 50;
+
+  --c-light-green: #99e699;
+  --c-light-green-rgb: 153, 230, 153;
+
+  --c-white: #ffffff;
+  --c-white-rgb: 255, 255, 255;
+
+  /* ── Controlled & Legible Typography Scale (Geist & Geist Mono) ── */
+  --font-display: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  --text-2xs: 11px;   /* Micro-badges, uppercase pill labels */
+  --text-xs: 12px;    /* Timestamps, helper hints, secondary tags */
+  --text-sm: 13px;    /* Table cells, sub-descriptions, sidebar links */
+  --text-base: 14px;  /* Standard body text, form controls, primary buttons */
+  --text-md: 15px;    /* Subheadings, prominent list items */
+  --text-lg: 16px;    /* Card headers, modal section titles */
+  --text-xl: 18px;    /* View headers, group names */
+  --text-2xl: 22px;   /* Major section titles, primary metrics */
+  --text-3xl: 26px;   /* Hero numbers, prominent statistics */
+  --text-4xl: 32px;   /* Main display banners */
+
+  /* ── Font Weights ── */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* ── Line Heights (Font-Height / Leading) ── */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.62;
+  --leading-loose: 1.75;
+
+  /* ── Spacing Scale ── */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+
+  /* ── Layout Dimensions ── */
+  --sidebar-width: 260px;
+
+  /* ── Stalwart Clean Geometry Radii ── */
+  --radius-xs: 4px;   /* Inner badges, chips, mini-buttons */
+  --radius-sm: 7px;   /* Standard buttons, form inputs, nav links */
+  --radius-md: 10px;  /* Stalwart Cards, panels, terminal window */
+  --radius-lg: 12px;  /* Hero banners, modal dialogs */
+  --radius-xl: 14px;  /* Outer containers, dropdowns */
+  --radius-full: 9999px; /* Status dots, rounded pills */
+
+  /* ── Subtle Elevation & Focus Tokens ── */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 3px 12px rgba(0, 0, 0, 0.35);
+  --shadow-dropdown: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --shadow-whatsapp: 0 2px 10px rgba(37, 211, 102, 0.22);
+  --shadow-glow: 0 0 12px rgba(37, 211, 102, 0.35);
+
+  /* ── Focus & Accessibility Tokens ── */
+  --focus-ring: 2px solid var(--color-primary);
+  --focus-offset: 2px;
+  --hit-area-min: 40px;
+
+  /* ── Numerical Precision ── */
+  --font-numeric-tabular: tabular-nums;
+
+  /* ── Hardware-Accelerated Smooth Transitions ── */
+  --trans-fast: 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-base: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Z-Indices ── */
+  --z-base: 1;
+  --z-nav: 50;
+  --z-topbar: 60;
+  --z-drawer: 80;
+  --z-modal: 100;
+  --z-toast: 150;
+  --z-tooltip: 200;
+}
+
+/* ==========================================================================
+   THEME: DARK (STALWART MINIMALIST + WHATSAPP GREEN ACCENT)
+   Obsidian surfaces (#090a0d), distinct cards (#13151b), inset inputs (#0c0d10), WhatsApp green (#25D366).
+   ========================================================================== */
+:root,
+[data-theme="dark"] {
+  --theme-name: 'Dark';
+  color-scheme: dark;
+
+  /* Stalwart Obsidian Deep Dark Surfaces */
+  --bg-app: #090a0d;
+  --bg-surface: #0c0e12;
+  --bg-surface-elevated: #161821;
+  --bg-surface-card: #13151b;
+  --bg-surface-inner: #0e1015;
+  --bg-surface-hover: #181b22;
+  --bg-input: #0b0c0f;
+  --bg-badge: #171a22;
+  --bg-nav-active: #1e2129;
+
+  /* Stalwart Clean Subtle Borders */
+  --border-subtle: #191c23;
+  --border-card: #20232c;
+  --border-card-highlight: #2c303c;
+  --border-input: #22252e;
+  --border-input-hover: #313644;
+  --border-accent: #25D366;
+  --border-focus: #25D366;
+
+  /* WhatsApp Green Accents (#25D366 & #00A884) */
+  --color-primary: #25D366;
+  --color-primary-rgb: 37, 211, 102;
+  --color-primary-hover: #20bd5a;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-teal: #00A884;
+  --color-whatsapp-dark: #128C7E;
+  --color-whatsapp-glow: rgba(37, 211, 102, 0.15);
+
+  --color-secondary: #00a884;
+  --color-secondary-rgb: 0, 168, 132;
+
+  --color-accent: #25D366;
+  --color-accent-rgb: 37, 211, 102;
+
+  --color-dark: #090a0d;
+  --color-carbon: #13151b;
+  --color-spruce: #128c7e;
+
+  /* Semantic Feedback */
+  --color-success: #25D366;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-info: #25D366;
+
+  /* High-Contrast Crisp Typography */
+  --text-main: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --text-muted: #8a909d;
+  --text-dim: #5a6170;
+
+  /* Modal and Backdrop Tokens */
+  --modal-backdrop-bg: rgba(4, 5, 8, 0.82);
+  --shadow-modal: 0 20px 45px -10px rgba(0, 0, 0, 0.7);
+
+  /* Chart / Progress */
+  --chart-line: #25D366;
+  --chart-fill: rgba(37, 211, 102, 0.08);
+  --chart-grid: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   THEME: LIGHT (STALWART LIGHT + WHATSAPP TEAL/GREEN ACCENT)
+   Crisp light surfaces (#f4f5f8), solid white cards (#ffffff), WhatsApp teal (#00a884).
+   ========================================================================== */
+[data-theme="light"] {
+  --theme-name: 'Light';
+  color-scheme: light;
+
+  /* Crisp Light Surfaces */
+  --bg-app: #f4f5f8;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f0f2f5;
+  --bg-surface-card: #ffffff;
+  --bg-surface-inner: #f8f9fb;
+  --bg-surface-hover: #edf0f4;
+  --bg-input: #ffffff;
+  --bg-badge: rgba(0, 168, 132, 0.08);
+  --bg-nav-active: rgba(0, 168, 132, 0.09);
+
+  /* Clean Defined Neutral Borders */
+  --border-subtle: #e2e5eb;
+  --border-card: #dbe0e8;
+  --border-card-highlight: #c8cfdc;
+  --border-input: #cfd5e1;
+  --border-input-hover: #94a3b8;
+  --border-accent: #00a884;
+  --border-focus: #00a884;
+
+  /* WhatsApp Green / Teal Accents */
+  --color-primary: #00a884;
+  --color-primary-rgb: 0, 168, 132;
+  --color-primary-hover: #067a61;
+  --color-whatsapp: #00a884;
+  --color-whatsapp-teal: #00a884;
+  --color-whatsapp-dark: #128c7e;
+  --color-whatsapp-glow: rgba(0, 168, 132, 0.18);
+
+  --color-secondary: #00a884;
+  --color-secondary-rgb: 0, 168, 132;
+
+  --color-accent: #00a884;
+  --color-accent-rgb: 0, 168, 132;
+
+  --color-dark: #0f172a;
+  --color-carbon: #1e293b;
+  --color-spruce: #00a884;
+
+  /* Semantic Feedback */
+  --color-success: #00a884;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-danger-bg: rgba(220, 38, 38, 0.08);
+  --color-info: #00a884;
+
+  /* Crisp Typography (WCAG AAA Contrast > 14:1) */
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+
+  /* Depth Shadows for Pure White Cards on Light App Canvas */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 4px 14px rgba(15, 23, 42, 0.09);
+  --shadow-dropdown: 0 10px 30px rgba(15, 23, 42, 0.12);
+  --shadow-whatsapp: 0 2px 8px rgba(0, 168, 132, 0.28);
+  --shadow-glow: 0 0 12px rgba(0, 168, 132, 0.25);
+
+  /* Modal and Backdrop Tokens */
+  --modal-backdrop-bg: rgba(15, 23, 42, 0.45);
+  --shadow-modal: 0 20px 40px -10px rgba(15, 23, 42, 0.16), 0 1px 3px rgba(15, 23, 42, 0.08);
+
+  /* Chart / Progress */
+  --chart-line: #00a884;
+  --chart-fill: rgba(0, 168, 132, 0.08);
+  --chart-grid: rgba(0, 0, 0, 0.06);
+}

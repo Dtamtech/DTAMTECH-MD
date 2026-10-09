@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DTAMTECH MD — Dashboard</title>
+  <meta name="description" content="Tableau de bord de gestion pour le bot WhatsApp DTAMTECH MD.">
+
+  <!-- Google Fonts: Geist & Geist Mono (Vercel Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Modular Vanilla CSS Architecture -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/forms.css">
+  <link rel="stylesheet" href="/css/terminal.css">
+  <link rel="stylesheet" href="/css/charts.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+  <!-- Accessibility: Skip to Main Content (WCAG 2.2 Level AA) -->
+  <a href="#main-stage" class="skip-link">Aller au contenu principal</a>
+
+  <div id="app-root">
+    <!-- Backdrop for mobile drawer -->
+    <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+    <!-- ── FIXED SIDEBAR (DESKTOP) ── -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon-wrapper" style="background: transparent; border: none; width: 30px; height: 30px;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L4 8L16 14L28 8L16 2Z" fill="#25D366" opacity="0.95"/>
+            <path d="M4 12L16 18L28 12L24 10L16 14L8 10L4 12Z" fill="#1ebd5a" opacity="0.85"/>
+            <path d="M4 17L16 23L28 17L24 15L16 19L8 15L4 17Z" fill="#128c7e" opacity="0.75"/>
+            <path d="M4 22L16 28L28 22L24 20L16 24L8 20L4 22Z" fill="#0b5e54" opacity="0.65"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">DTAMTECH <span class="brand-version-badge" style="color: var(--color-primary); border-color: var(--border-accent);">MD v4</span></div>
+          <div class="brand-badge">Tableau de Bord</div>
+        </div>
+      </div>
+
+      <!-- Live Connection Pill -->
+      <div class="sidebar-status-box">
+        <div class="status-indicator">
+          <div id="sidebar-status-dot" class="status-dot"></div>
+          <span id="sidebar-status-text" class="status-label">Initialisation...</span>
+        </div>
+        <span id="sidebar-ping" class="ws-ping-badge">-- ms</span>
+      </div>
+
+      <!-- Grouped Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="sidebar-group-label">PRINCIPAL</div>
+
+        <a href="#/overview" class="nav-link active" data-view="overview" id="nav-overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+          </svg>
+          <span>Vue d'Ensemble</span>
+        </a>
+
+        <a href="#/pairing" class="nav-link" data-view="pairing" id="nav-pairing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
+          <span>Session</span>
+          <span id="badge-pairing-state" class="badge">Prêt</span>
+        </a>
+
+        <div class="sidebar-group-label">GESTION & BOT</div>
+
+        <a href="#/settings" class="nav-link" data-view="settings" id="nav-settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Paramètres du bot</span>
+        </a>
+
+        <a href="#/security" class="nav-link" data-view="security" id="nav-security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Sécurité</span>
+          <svg class="nav-trailing-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </a>
+
+        <a href="#/groups" class="nav-link" data-view="groups" id="nav-groups">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>Groupes</span>
+        </a>
+
+        <div class="sidebar-group-label">OUTILS SYSTÈME</div>
+
+        <a href="#/logs" class="nav-link" data-view="logs" id="nav-logs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span>Terminal de Logs</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Theme Switcher & Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-theme-switch" id="sidebar-theme-toggle">
+          <button type="button" class="theme-pill-btn active" data-theme-val="dark" aria-label="Activer thème sombre">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span>Dark</span>
+          </button>
+          <button type="button" class="theme-pill-btn" data-theme-val="light" aria-label="Activer thème clair">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <span>Light</span>
+          </button>
+        </div>
+        <div class="flex justify-between items-center text-muted" style="font-size: 11px; padding-top: 4px;">
+          <span>© 2026 DTAMTECH</span>
+          <span class="mono" style="color: var(--color-primary); font-size: 10px; font-weight: 600;">BUILD 4.0</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── MAIN APP WORKSPACE ── -->
+    <div class="main-wrapper">
+      <!-- TOPBAR HEADER -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Ouvrir le menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="breadcrumb-container">
+            <span class="breadcrumb-root">DTAMTECH MD</span>
+            <span class="breadcrumb-separator">/</span>
+            <span id="breadcrumb-title" class="topbar-title">Vue d'Ensemble</span>
+          </div>
+        </div>
+
+        <!-- Stalwart Centered Search Pill Trigger -->
+        <div class="topbar-center">
+          <div id="topbar-search-trigger" class="topbar-search-pill" title="Recherche rapide / Palette d'actions (Ctrl+K)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="topbar-search-text">Search pages, fields, settings...</span>
+            <span class="topbar-search-kbd">ctrl + k</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Theme Toggle Switch Button -->
+          <button id="theme-toggle-btn" class="theme-toggle-btn" title="Basculer le thème (Sombre / Clair)" aria-label="Basculer le thème">
+            <span class="theme-toggle-track">
+              <span class="theme-toggle-icon icon-moon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+              <span class="theme-toggle-icon icon-sun">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </span>
+            </span>
+            <span class="theme-toggle-text">Dark</span>
+          </button>
+
+          <!-- Stalwart User Avatar / Profile Icon -->
+          <a href="#/security" class="topbar-avatar-btn" title="Compte & Sécurité Cockpit" aria-label="Compte Cockpit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
+
+          <!-- Logout button -->
+          <button id="logout-btn" class="btn btn-ghost btn-sm btn-logout" title="Se déconnecter" aria-label="Se déconnecter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Quitter</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MAIN STAGE (SPA VIEWS MOUNT POINT) -->
+      <main id="main-stage" class="main-stage">
+        <!-- Rendered dynamically by router.js -->
+        <div class="skeleton-loading" style="height: 300px; width: 100%;"></div>
+      </main>
+    </div>
+
+    <!-- ── BOTTOM NAVIGATION (MOBILE) ── -->
+    <nav class="bottom-nav">
+      <a href="#/overview" class="bottom-nav-item active" data-view="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+          <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+          <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+          <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+        </svg>
+        <span>Accueil</span>
+      </a>
+      <a href="#/pairing" class="bottom-nav-item" data-view="pairing">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+        <span>Session</span>
+      </a>
+      <a href="#/settings" class="bottom-nav-item" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>Paramètres</span>
+      </a>
+      <a href="#/logs" class="bottom-nav-item" data-view="logs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+        <span>Logs</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ── FLOATING TOASTS CONTAINER ── -->
+  <div id="toast-container"></div>
+
+  <!-- ── MODAL DIALOG CONTAINER ── -->
+  <div id="modal-container"></div>
+
+  <!-- ── COMMAND PALETTE (CTRL+K) ── -->
+  <div id="palette-modal" class="modal-backdrop">
+    <div class="modal-dialog palette-dialog">
+      <div class="palette-input-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="palette-search" class="palette-input" placeholder="Taper une action ou un écran... (ex: logs, gc, toggle)">
+        <span class="badge badge-spruce">ESC</span>
+      </div>
+      <div id="palette-results" class="palette-results">
+        <!-- Injected via shortcuts.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SPA Entry Module -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
