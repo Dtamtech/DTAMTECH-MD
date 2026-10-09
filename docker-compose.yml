@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: dtamtech-md
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/auth_info_baileys:/app/src/auth_info_baileys
+      - ./src/db:/app/src/db
+      - ./temp:/app/temp
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
